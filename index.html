@@ -4,464 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Software Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+     integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-primary: #F9FAFB;
-            --bg-secondary: #FFFFFF;
-            --text-primary: #1F2937;
-            --text-secondary: #6B7280;
-            --accent: #5E43F3;
-            --border: #E5E7EB;
-            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        [data-theme="dark"] {
-            --bg-primary: #0D1117;
-            --bg-secondary: #161B22;
-            --text-primary: #E6EDF3;
-            --text-secondary: #8B949E;
-            --accent: #5E43F3;
-            --border: #30363D;
-            --card-shadow: 0 4px 6px -1px rgba(94, 67, 243, 0.2);
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            transition: background 0.3s ease, color 0.3s ease;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Navigation */
-        nav {
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            background: var(--bg-primary);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            border-bottom: 1px solid var(--border);
-        }
-
-        nav .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent), #9333EA);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .theme-toggle {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            padding: 8px 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .theme-toggle:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .profile-container {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 30px;
-        }
-
-        .profile-ring {
-            position: absolute;
-            inset: -10px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent), #9333EA, #EC4899);
-            animation: rotate 3s linear infinite;
-            padding: 3px;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .profile-pic {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: var(--bg-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 80px;
-            position: relative;
-            z-index: 1;
-        }
-
-        h1 {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, var(--accent), #9333EA);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .title {
-            font-size: 20px;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-        }
-
-        .bio {
-            max-width: 600px;
-            margin: 0 auto 30px;
-            color: var(--text-secondary);
-            font-size: 16px;
-        }
-
-        /* Tech Stack */
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin: 30px 0;
-        }
-
-        .tech-tag {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .tech-tag:hover {
-            border-color: var(--accent);
-            box-shadow: 0 0 20px rgba(94, 67, 243, 0.3);
-            transform: translateY(-2px);
-        }
-
-        /* Buttons */
-        .btn-group {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin: 30px 0;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-            border: 2px solid var(--accent);
-        }
-
-        .btn-primary:hover {
-            box-shadow: 0 0 30px rgba(94, 67, 243, 0.5);
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 2px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        /* Social Links */
-        .social-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        .social-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 20px;
-        }
-
-        .social-icon:hover {
-            border-color: var(--accent);
-            box-shadow: 0 0 20px rgba(94, 67, 243, 0.3);
-            transform: translateY(-5px);
-        }
-
-        /* Stats Section */
-        .stats {
-            padding: 60px 0;
-            background: var(--bg-secondary);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .stat-card {
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            border-color: var(--accent);
-            box-shadow: var(--card-shadow);
-            transform: translateY(-5px);
-        }
-
-        .stat-number {
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 16px;
-        }
-
-        /* Timeline Section */
-        .timeline-section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 60px;
-        }
-
-        .timeline {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: var(--border);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 50px;
-            display: flex;
-            align-items: center;
-        }
-
-        .timeline-item:nth-child(odd) {
-            flex-direction: row;
-        }
-
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .timeline-content {
-            width: calc(50% - 40px);
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-content:hover {
-            border-color: var(--accent);
-            box-shadow: var(--card-shadow);
-            transform: translateY(-5px);
-        }
-
-        .timeline-dot {
-            width: 20px;
-            height: 20px;
-            background: var(--accent);
-            border-radius: 50%;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1;
-            box-shadow: 0 0 20px rgba(94, 67, 243, 0.5);
-        }
-
-        .timeline-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .timeline-date {
-            color: var(--accent);
-            font-size: 14px;
-            margin-bottom: 12px;
-        }
-
-        .timeline-desc {
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            padding: 80px 0;
-            background: var(--bg-secondary);
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(94, 67, 243, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 14px;
-            background: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            box-shadow: 0 0 30px rgba(94, 67, 243, 0.5);
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        footer {
-            padding: 30px 0;
-            text-align: center;
-            border-top: 1px solid var(--border);
-            color: var(--text-secondary);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            h1 { font-size: 36px; }
-            .timeline::before { left: 20px; }
-            .timeline-item { flex-direction: column !important; align-items: flex-start; }
-            .timeline-content { width: calc(100% - 60px); margin-left: 40px; }
-            .timeline-dot { left: 20px; }
-            .btn-group { flex-direction: column; }
-        }
-    </style>
+    <link rel="stylesheet" href="./main.css">
 </head>
 <body data-theme="dark">
     <!-- Navigation -->
     <nav>
         <div class="container">
-            <div class="logo">Portfolio</div>
+            <div class="logo">Zafarbek</div>
             <button class="theme-toggle" onclick="toggleTheme()">
-                <span id="theme-icon">🌙</span>
-                <span id="theme-text">Dark</span>
+                <span id="theme-icon">
+                    <i class="fa-solid fa-sun"></i>
+                </span>
+                <span id="theme-text">Light</span>
             </button>
         </div>
     </nav>
@@ -473,27 +31,18 @@
                 <div class="profile-ring"></div>
                 <div class="profile-pic">👨‍💻</div>
             </div>
-            <h1>John Doe</h1>
-            <p class="title">Software Engineer & Tech Enthusiast</p>
-            <p class="bio">
-                Passionate about building scalable applications and learning cutting-edge technologies. 
-                I love solving complex problems and creating seamless user experiences that make a difference.
-            </p>
+            <h1>Zafarbek Zaripov</h1>
+            <p class="title">Web developer</p>
 
             <div class="tech-stack">
-                <span class="tech-tag">React</span>
-                <span class="tech-tag">Next.js</span>
-                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">ReactJS</span> 
                 <span class="tech-tag">Node.js</span>
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">Django</span>
-                <span class="tech-tag">MongoDB</span>
-                <span class="tech-tag">PostgreSQL</span>
-                <span class="tech-tag">Firebase</span>
-                <span class="tech-tag">Supabase</span>
-                <span class="tech-tag">AWS</span>
-                <span class="tech-tag">Docker</span>
-                <span class="tech-tag">Kubernetes</span>
+                <span class="tech-tag">Tailwind</span>
+                <span class="tech-tag">Bootstrap</span>
+                <span class="tech-tag">Git</span>
+                <span class="tech-tag">GitHub</span>
+                <span class="tech-tag">Figma</span>
             </div>
 
             <div class="btn-group">
@@ -502,26 +51,33 @@
             </div>
 
             <div class="social-links">
-                <div class="social-icon" title="GitHub">
+                <a href="https://github.com/zafarbekzaripov1" class="social-icon" title="GitHub">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
-                </div>
-                <div class="social-icon" title="LinkedIn">
+                </a>
+                <a href="https://www.linkedin.com/in/zafarbek-zaripov-abb414395/" class="social-icon" title="LinkedIn">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                     </svg>
-                </div>
-                <div class="social-icon" title="YouTube">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-                    </svg>
-                </div>
-                <div class="social-icon" title="Email">
+                </a>
+                <a href="" class="social-icon" title="Email">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
                     </svg>
-                </div>
+                </a>
+                <a href="" class="social-icon" title="Telegram">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.604 7.201l-1.659 7.835c-.126.555-.456.691-.923.43l-2.554-1.884-1.232 1.184c-.136.136-.25.25-.512.25l.184-2.611 4.747-4.292c.207-.184-.045-.287-.32-.103l-5.867 3.692-2.522-.787c-.548-.171-.559-.548.115-.81l9.864-3.803c.459-.171.861.103.713.791z"/>
+                    </svg>
+                </a>
+                <a href="" class="social-icon" title="Instagram">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.35 3.608 1.325.975.975 1.263 2.242 1.325 3.608.058 1.266.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.35 2.633-1.325 3.608-.975.975-2.242 1.263-3.608 1.325-1.266.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.35-3.608-1.325-.975-.975-1.263-2.242-1.325-3.608-.058-1.266-.07-1.645-.07-4.85s.012-3.584.07-4.85c.062-1.366.35-2.633 1.325-3.608C5.517 2.513 6.784 2.225 8.15 2.163c1.266-.058 1.645-.07 4.85-.07zm0-2.163C8.741 0 8.332.013 7.052.072c-1.675.061-3.163.34-4.356 1.533C1.503 2.798 1.224 4.286 1.163 5.961c-.059 1.28-.072 1.689-.072 5s.013 3.72.072 5c.061 1.675.34 3.163 1.533 4.356C3.889 21.502 5.377 21.781 7.052 21.842c1.28.059 1.689.072 5 .072s3.72-.013 5
+                        .072c1.675-.061 3.163-.34 4.356-1.533 1.193-1.193 1.472-2.681 1.533-4.356.059-1.28.072-1.689.072-5s-.013-3.72-.072-5c-.061-1.675-.34-3.163-1.533-4.356C19.215.412 17.727.133 16.052.072 14.772.013 14.363 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 0 0-2.881 1.44 1.44 0 0 0 0 2.881z"/>
+                    </svg>
+                    </a>
+
             </div>
         </div>
     </section>
@@ -531,20 +87,16 @@
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number">3+</div>
+                    <div class="stat-number">2+</div>
                     <div class="stat-label">Years Experience</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">20+</div>
+                    <div class="stat-number">2</div>
                     <div class="stat-label">Projects Completed</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">10+</div>
                     <div class="stat-label">Blog Posts</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">599+</div>
-                    <div class="stat-label">Coffee Cups ☕</div>
                 </div>
             </div>
         </div>
@@ -557,17 +109,17 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-title">Data</div>
-                        <div class="timeline-date">Nov 2022 – May 2023</div>
-                        <div class="timeline-desc">NodeJS Backend Developer working with NodeJS, ExpressJS, and Database management</div>
+                        <div class="timeline-title">Al-Xorazmiy vorislari </div>
+                        <div class="timeline-date">Apr 2024 – May 2026</div>
+                        <div class="timeline-desc">Learned web programming</div>
                     </div>
                     <div class="timeline-dot"></div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-title">Toshkent Axborot Texnologiyalari Universiteti Urganch filiali</div>
-                        <div class="timeline-date">2021 – Present</div>
-                        <div class="timeline-desc">Kompyuter Injiringi</div>
+                        <div class="timeline-date">2026 – Present</div>
+                        <div class="timeline-desc">Computer engineering</div>
                     </div>
                     <div class="timeline-dot"></div>
                 </div>
@@ -586,7 +138,7 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="your.email@example.com" required>
+                    <input type="email" id="email" placeholder="your.email@gmail.com" required>
                 </div>
                 <div class="form-group">
                     <label for="message">Message</label>
@@ -600,7 +152,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 John Doe. All rights reserved.</p>
+            <p>&copy; 2025 Zafarbek Zaripov. All rights reserved.</p>
         </div>
     </footer>
 
@@ -612,12 +164,16 @@
             
             if (body.getAttribute('data-theme') === 'dark') {
                 body.setAttribute('data-theme', 'light');
-                themeIcon.textContent = '☀️';
-                themeText.textContent = 'Light';
+                themeIcon.innerHTML = '<i class="fa-solid fa-moon"></i>';
+                themeText.textContent = 'Dark';
+                themeIcon.style.color = '#000';
+                themeText.style.color = '#000';
             } else {
                 body.setAttribute('data-theme', 'dark');
-                themeIcon.textContent = '🌙';
-                themeText.textContent = 'Dark';
+                themeIcon.innerHTML = '<i class="fa-solid fa-sun"></i>';
+                themeText.textContent = 'Light';
+                themeIcon.style.color = '#fff';
+                themeText.style.color = '#fff';
             }
         }
 
